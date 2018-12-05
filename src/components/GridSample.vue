@@ -122,14 +122,13 @@ export default {
     args: String,
   },
   data: () => ({
-    days: Array.from({length: 31}, (value, key) => key).map(n => ({ label: n + 1, style: `width: 40px; left: ${n * 40}px` })),
-    headerContainerStyle: 'left: 0px',
+    days: Array.from({length: 31}, (value, key) => key).map(n => ({ label: n + 1, style: { width: '40px', left: `${n * 40}px` } })),
+    headerContainerStyle: { left: '0px' },
   }),
   methods: {
     onScroll (event) {
       // Any code to be executed when the window is scrolled
-      console.log(event, event.target.scrollLeft, event.target.scrollTop);
-      this.headerContainerStyle = `left: ${-event.target.scrollLeft}px`;
+      this.headerContainerStyle = { left: `${-event.target.scrollLeft}px` };
     }
   },
   created () {
