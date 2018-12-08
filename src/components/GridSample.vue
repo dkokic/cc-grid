@@ -1,9 +1,9 @@
 <template>
   <div class="cc-fresh" style="height: 337px" ng-style="Ctrl.tableHeight">
     <div class="cc-bl cc-bl-full-height cc-ltr">
-      <div class="cc-bl-center cc-bl-full-height-center" style="margin-left: 0px;width: 1123px;" id="center">
+      <div class="cc-bl-center cc-bl-full-height-center" style="margin-left: 0px; width: 1123px;" id="center">
         <div class="cc-bl cc-bl-full-height">
-          <div class="cc-bl-center cc-bl-full-height-center" style="margin-left: 0px;width: 1123px;" id="center">
+          <div class="cc-bl-center cc-bl-full-height-center" style="margin-left: 0px; width: 1123px;" id="center">
             <div class="cc-root cc-scrolls cc-font-style">
               <div class="cc-header" style="height: 25px">
                 <div class="cc-header-viewport" style="margin-left: 0px; margin-right: 0px">
@@ -90,6 +90,14 @@
                         <div class="cc-cell-no-focus cc-cell cc-cell-not-inline-editing cc-cell-value ng-scope" colid="period_1" style="width: 105px; left: 1087px;">23.01.2017</div>
                         <div class="cc-cell-no-focus cc-cell cc-cell-not-inline-editing cc-cell-value text-center ng-scope" colid="0" style="width: 30px; left: 0px; font-size: 9px; margin-top: 2px;">6</div>
                       </div>
+                      <cc-grid-row row="6" class="cc-row-even" style="top: 156px; height: 26px;" :columns="rows[0].columns"></cc-grid-row>
+                      <cc-grid-row row="7" class="cc-row-odd" style="top: 182px; height: 26px;" v-bind="rows[0]"></cc-grid-row>
+                      <div class="cc-row cc-row-no-focus cc-row-no-animation cc-row-level-0 cc-row-even" row="8" style="top: 208px; height: 26px;">
+                        <div class="cc-cell-no-focus cc-cell cc-cell-value text-center" style="left: 160px; width: 360px; background-color: lavender">iPhone X</div>
+                      </div>
+                      <div class="cc-row cc-row-no-focus cc-row-no-animation cc-row-level-0 cc-row-odd" row="9" style="top: 234px; height: 26px;">
+                        <div class="cc-cell-no-focus cc-cell cc-cell-value text-center" style="left: 280px; width: 600px; background-color: lavender">iPhone Xs</div>
+                      </div>
                       <div class="cc-row cc-row-no-focus cc-row-no-animation cc-row-level-0 cc-row-odd" row="23" style="top: 598px; height: 26px;">
                         <div class="cc-cell-no-focus cc-cell cc-cell-not-inline-editing cc-cell-value ng-scope cc-column-hover" colid="urlName" style="width: 250px; left: 30px;">blau-l-silber</div>
                         <div class="cc-cell-no-focus cc-cell cc-cell-not-inline-editing cc-cell-value text-center ng-scope" colid="productType" style="width: 106px; left: 280px;">Postpaid-Tarif</div>
@@ -116,14 +124,35 @@
 
 
 <script>
+import CcGridRow from './CcGridRow'
+
 export default {
   name: 'GridSample',
+  components: {
+    CcGridRow
+  },
   props: {
     args: String,
   },
   data: () => ({
     days: Array.from({length: 31}, (value, key) => key).map(n => ({ label: n + 1, style: { width: '40px', left: `${n * 40}px` } })),
     headerContainerStyle: { left: '0px' },
+    rows: [
+      {
+        columns: [
+          { colid: '0', clsss: { 'cc-column-hover': false, 'text-center': true }, style: { 'left': '0px', 'width': '30px', 'font-size': '9px', 'margin-top': '2px' }, value: '24' },
+          { colid: 'urlName', clsss: { 'cc-column-hover': true, 'text-center': false }, style: { 'left': '30px', 'width': '250px' }, value: 'blau-l-silber' },
+          { colid: 'productType', clsss: { 'cc-column-hover': false, 'text-center': true }, style: { 'left': '280px', 'width': '106px' }, value: 'Postpaid-Tarif' },
+          { colid: 'tariffName', clsss: { 'cc-column-hover': false, 'text-center': true }, style: { 'left': '386px', 'width': '105px' }, value: 'Blau L' },
+          { colid: 'tariffVariationCode', clsss: { 'cc-column-hover': false, 'text-center': true }, style: { 'left': '491px', 'width': '105px' }, value: '9875083' },
+          { colid: 'segment', clsss: { 'cc-column-hover': false, 'text-center': true }, style: { 'left': '596px', 'width': '105px' }, value: 'Privatkunden' },
+          { colid: 'frameContractNumber', clsss: { 'cc-column-hover': false, 'text-center': true }, style: { 'left': '701px', 'width': '105px' }, value: '70000600' },
+          { colid: 'tariffProduct', clsss: { 'cc-column-hover': false, 'text-center': true }, style: { 'left': '806px', 'width': '176px' }, value: 'blau-l' },
+          { colid: 'period.from', clsss: { 'cc-column-hover': false, 'text-center': false }, style: { 'left': '982px', 'width': '105px' }, value: '07.12.2016' },
+          { colid: 'period.till', clsss: { 'cc-column-hover': false, 'text-center': false }, style: { 'left': '1087px', 'width': '105px' }, value: '23.01.2017' },
+        ],
+      },
+    ],
   }),
   methods: {
     onScroll (event) {
@@ -142,7 +171,7 @@ export default {
 
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
+<style >
 
 .cc-fresh {
     line-height: 1.4;
